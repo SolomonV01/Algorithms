@@ -1,50 +1,35 @@
-﻿namespace DataStructures;
+﻿using System;
+using System.Linq;
+using static System.Console;
+
+namespace Shuffle;
 class Program
 {
-    static void DisplayCharacter(MKCharacters character)
+    static void Main(string[] args)
     {
-        Console.WriteLine($"Name: {character.Name}, Health: {character.Health}, Strength: {character.Strength}, Speed: {character.Speed}");
+        int[] array = { 50, 88, 36, 20, 99 };
+        ShuffleArray(array);
+
+        WriteLine("Shuffled Array:");
+        foreach(int num in array)
+        {
+            Write(num + " ");   
+        }
     }
 
-    static void Main()
+    static void ShuffleArray(int[] intArray)
     {
-        // Mortal Kombat 1 Roster
-        var roster = new List<MKCharacters>
+        Random rnd = new Random();
+        int n = intArray.Length;
+
+        for(int i = n - 1; i > 0; i--)
         {
-            new MKCharacters("Smoke", 100, 80, 70),
-            new MKCharacters("Sub-Zero", 95, 85, 65),
-            new MKCharacters("Scorpion", 90, 75, 75),
-            new MKCharacters("Johnny Cage", 110, 70, 80),
+            int r = rnd.Next(0, i + 1);
 
-        };
-
-        //Array
-        MKCharacters[] arrayStorage = roster.ToArray();
-
-        //Stack
-        Stack<MKCharacters> stackStorage = new Stack<MKCharacters>(roster);
-
-        //Queue
-        Queue<MKCharacters> queueStorage = new Queue<MKCharacters>(roster);
-
-        Console.WriteLine("Characters in Array:");
-        foreach (var character in arrayStorage)
-        {
-            DisplayCharacter(character);
-        }
-
-        Console.WriteLine("\nCharacters in Stack:");
-        while (stackStorage.Count > 0)
-        {
-            var character = stackStorage.Pop();
-            DisplayCharacter(character);
-        }
-
-        Console.WriteLine("\nCharacters in Queue:");
-        while (queueStorage.Count > 0)
-        {
-            var character = queueStorage.Dequeue();
-            DisplayCharacter(character);
+            int swap = intArray[i];
+            intArray[i] = intArray[r];
+            intArray[r] = swap;
         }
     }
 }
+
