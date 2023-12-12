@@ -1,35 +1,50 @@
-﻿using System;
-using System.Linq;
-using static System.Console;
-
-namespace Shuffle;
+﻿namespace DataStructures;
 class Program
 {
-    static void Main(string[] args)
+    static void DisplayCharacter(MKCharacters character)
     {
-        int[] array = { 50, 88, 36, 20, 99 };
-        ShuffleArray(array);
-
-        WriteLine("Shuffled Array:");
-        foreach(int num in array)
-        {
-            Write(num + " ");   
-        }
+        Console.WriteLine($"Name: {character.Name}, Health: {character.Health}, Strength: {character.Strength}, Speed: {character.Speed}");
     }
 
-    static void ShuffleArray(int[] intArray)
+    static void Main()
     {
-        Random rnd = new Random();
-        int n = intArray.Length;
-
-        for(int i = n - 1; i > 0; i--)
+        // Mortal Kombat 1 Roster
+        var roster = new List<MKCharacters>
         {
-            int r = rnd.Next(0, i + 1);
+            new MKCharacters("Smoke", 100, 80, 70),
+            new MKCharacters("Sub-Zero", 95, 85, 65),
+            new MKCharacters("Scorpion", 90, 75, 75),
+            new MKCharacters("Johnny Cage", 110, 70, 80),
 
-            int swap = intArray[i];
-            intArray[i] = intArray[r];
-            intArray[r] = swap;
+        };
+
+        //Array
+        MKCharacters[] arrayStorage = roster.ToArray();
+
+        //Stack
+        Stack<MKCharacters> stackStorage = new Stack<MKCharacters>(roster);
+
+        //Queue
+        Queue<MKCharacters> queueStorage = new Queue<MKCharacters>(roster);
+
+        Console.WriteLine("Characters in Array:");
+        foreach (var character in arrayStorage)
+        {
+            DisplayCharacter(character);
+        }
+
+        Console.WriteLine("\nCharacters in Stack:");
+        while (stackStorage.Count > 0)
+        {
+            var character = stackStorage.Pop();
+            DisplayCharacter(character);
+        }
+
+        Console.WriteLine("\nCharacters in Queue:");
+        while (queueStorage.Count > 0)
+        {
+            var character = queueStorage.Dequeue();
+            DisplayCharacter(character);
         }
     }
 }
-
