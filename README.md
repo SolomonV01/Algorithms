@@ -4,7 +4,7 @@
 
 **BIG O NOTATION**
 FIRST ASSIGNMENT BASED ON BIG O NOTATION:
-[BigO/BigO.cs](url)
+[https://github.com/SolomonV01/Algorithms/tree/main/BigO](url)
 
 **Fisher-Yeats Shuffle:**
 [https://github.com/SolomonV01/Algorithms](url)
